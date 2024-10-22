@@ -533,7 +533,7 @@ def main():
 
             # Data export options
             st.subheader("Export Data")
-            export_format = st.radio("Select export format", ["CSV", "Excel", "SQLite"])
+            export_format = st.radio("Select export format", ["CSV"])
             
             if export_format == "CSV":
                 csv = df.to_csv(index=False)
