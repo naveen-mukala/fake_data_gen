@@ -538,17 +538,7 @@ def main():
             if export_format == "CSV":
                 csv = df.to_csv(index=False)
                 st.download_button("Download CSV", csv, "fake_data.csv", "text/csv")
-            elif export_format == "Excel":
-                buffer = io.BytesIO()
-                with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-                    df.to_excel(writer, sheet_name='Sheet1', index=False)
-                st.download_button("Download Excel", buffer.getvalue(), "fake_data.xlsx")
-            elif export_format == "SQLite":
-                conn = sqlite3.connect('fake_data.db')
-                df.to_sql('fake_data', conn, if_exists='replace', index=False)
-                conn.close()
-                with open('fake_data.db', 'rb') as f:
-                    st.download_button("Download SQLite DB", f, "fake_data.db")
+
 
             # Data profiling
             st.subheader("Data Profiling")
