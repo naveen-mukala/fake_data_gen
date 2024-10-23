@@ -31,7 +31,8 @@ DOMAIN_SCHEMAS = {
         "weight_kg": float,
         "height_cm": int,
         "last_visit": "datetime",
-        "insurance_number": str
+        "insurance_number": str,
+        "illness":str
     },
     "Financial Transactions": {
         "transaction_id": int,
@@ -334,6 +335,28 @@ def generate_room_type():
 def generate_priority_level():
     return random.choice(['Low', 'Medium', 'High', 'Critical', 'Urgent'])
 
+def generate_illness():
+    return random.choice([
+        "Common Cold", "Influenza", "Hypertension", "Diabetes Type 2", 
+        "Asthma", "Arthritis", "Allergies", "Migraine", "Depression", 
+        "Anxiety Disorder", "Gastroesophageal Reflux Disease (GERD)", 
+        "Osteoporosis", "Chronic Obstructive Pulmonary Disease (COPD)", 
+        "Eczema", "Hypothyroidism", "Obesity", "Coronary Artery Disease",
+        "Stroke", "Pneumonia", "Urinary Tract Infection", "Skin Infection",
+        "Gastroenteritis", "Bronchitis", "Sinusitis", "Otitis Media",
+        "Conjunctivitis", "Dermatitis", "Fibromyalgia", "Irritable Bowel Syndrome",
+        "Celiac Disease", "Psoriasis", "Rheumatoid Arthritis", "Lupus",
+        "Multiple Sclerosis", "Parkinson's Disease", "Alzheimer's Disease",
+        "Schizophrenia", "Bipolar Disorder", "Attention Deficit Hyperactivity Disorder",
+        "Autism Spectrum Disorder", "Epilepsy", "Glaucoma", "Cataracts",
+        "Macular Degeneration", "Hearing Loss", "Tinnitus", "Anemia",
+        "Thyroid Disorders", "Chronic Kidney Disease", "Liver Cirrhosis",
+        "Gallstones", "Appendicitis", "Herniated Disc", "Osteoarthritis",
+        "Gout", "Chronic Fatigue Syndrome", "Sleep Apnea", "Insomnia",
+        "Eating Disorders", "Substance Use Disorder", "Post-Traumatic Stress Disorder",
+        "Obsessive-Compulsive Disorder", "None"
+    ])
+
 # Domain-specific value generators
 class DomainValueGenerator:
     @staticmethod
@@ -362,6 +385,8 @@ class DomainValueGenerator:
             return random.randint(150, 200)
         elif field == "insurance_number":
             return fake.uuid4()[:8].upper()
+        elif field == "illness":
+            return generate_illness()
         return None
 
     @staticmethod
@@ -429,7 +454,7 @@ class DomainValueGenerator:
         elif field == "major":
             return generate_course_major()
         elif field == "credits_completed":
-            return random.randint(0, 120)
+            return random.choice([0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30])
         elif field == "graduation_year":
             return random.randint(datetime.now().year, datetime.now().year + 5)
         return None
