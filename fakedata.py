@@ -420,6 +420,96 @@ class DomainValueGenerator:
             return random.randint(1960, 2023)
         return None
 
+    @staticmethod
+    def educational(field):
+        if field == "student_id":
+            return fake.random_int(min=10000, max=99999)
+        elif field == "gpa":
+            return round(random.uniform(2.0, 4.0), 2)
+        elif field == "major":
+            return generate_course_major()
+        elif field == "credits_completed":
+            return random.randint(0, 120)
+        elif field == "graduation_year":
+            return random.randint(datetime.now().year, datetime.now().year + 5)
+        return None
+
+    @staticmethod
+    def inventory(field):
+        if field == "product_id":
+            return fake.random_int(min=1000, max=9999)
+        elif field == "quantity":
+            return random.randint(0, 1000)
+        elif field == "unit_price":
+            return round(random.uniform(1, 1000), 2)
+        elif field == "reorder_level":
+            return random.randint(10, 100)
+        elif field == "supplier_id":
+            return fake.random_int(min=100, max=999)
+        return None
+
+    @staticmethod
+    def social_media(field):
+        if field == "post_id":
+            return fake.random_int(min=1000000, max=9999999)
+        elif field == "user_handle":
+            return f"@{fake.user_name()}"
+        elif field == "likes":
+            return random.randint(0, 10000)
+        elif field == "shares":
+            return random.randint(0, 1000)
+        elif field == "comment_count":
+            return random.randint(0, 500)
+        elif field == "content_type":
+            return random.choice(['text', 'image', 'video', 'link'])
+        return None
+
+    @staticmethod
+    def weather(field):
+        if field == "station_id":
+            return fake.random_int(min=1000, max=9999)
+        elif field == "temperature":
+            return round(random.uniform(-20, 40), 1)
+        elif field == "humidity":
+            return round(random.uniform(0, 100), 1)
+        elif field == "precipitation":
+            return round(random.uniform(0, 50), 1)
+        elif field == "wind_speed":
+            return round(random.uniform(0, 100), 1)
+        elif field == "pressure":
+            return round(random.uniform(950, 1050), 1)
+        return None
+
+    @staticmethod
+    def fitness(field):
+        if field == "workout_id":
+            return fake.random_int(min=10000, max=99999)
+        elif field == "user_id":
+            return fake.random_int(min=1000, max=9999)
+        elif field == "duration_minutes":
+            return random.randint(15, 120)
+        elif field == "calories_burned":
+            return round(random.uniform(50, 1000), 1)
+        elif field == "heart_rate":
+            return random.randint(60, 180)
+        elif field == "workout_type":
+            return generate_workout_type()
+        return None
+
+    @staticmethod
+    def library(field):
+        if field == "book_id":
+            return fake.random_int(min=10000, max=99999)
+        elif field == "isbn":
+            return fake.isbn13()
+        elif field == "member_id":
+            return fake.random_int(min=1000, max=9999)
+        return None
+
+    # ... Add more domain-specific generators here ...
+
+
+
 # Add more domain-specific generators here...
 
 # Enhanced generate_fake_value function with domain-specific logic
@@ -431,7 +521,13 @@ def generate_fake_value(field, dtype, domain):
         "Financial Transactions": DomainValueGenerator.financial,
         "HR Employee Data": DomainValueGenerator.hr,
         "Restaurant Orders": DomainValueGenerator.restaurant,
-        "Real Estate Listings": DomainValueGenerator.real_estate
+        "Real Estate Listings": DomainValueGenerator.real_estate,
+        "Educational Student Records": DomainValueGenerator.educational,
+        "Inventory Management": DomainValueGenerator.inventory,
+        "Social Media Posts": DomainValueGenerator.social_media,
+        "Weather Data": DomainValueGenerator.weather,
+        "Fitness Tracking": DomainValueGenerator.fitness,
+        "Library Records": DomainValueGenerator.library,
         # Add more domain mappings here...
     }
 
