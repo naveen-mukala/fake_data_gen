@@ -25,7 +25,6 @@ DOMAIN_SCHEMAS = {
     },
     "Healthcare Patient Records": {
         "patient_id": int,
-        "name": str,
         "date_of_birth": "datetime",
         "blood_type": str,
         "weight_kg": float,
